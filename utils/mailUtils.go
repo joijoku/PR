@@ -19,8 +19,8 @@ import (
 
 var (
 	host       = "smtp.gmail.com"
-	username   = "dev.psi@praweda.id"
-	password   = "PrawedaSarana2019"
+	username   = ""
+	password   = ""
 	portNumber = "587"
 )
 
