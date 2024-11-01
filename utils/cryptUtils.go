@@ -15,8 +15,8 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/joijoku/PR/shared"
 	"golang.org/x/crypto/bcrypt"
-	"pr.net/shared"
 )
 
 func EncryptMessage(message, kunci string) (string, string, error) {

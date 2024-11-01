@@ -8,7 +8,7 @@ import (
 	"math"
 	"reflect"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 type NullString sql.NullString

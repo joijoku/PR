@@ -3,7 +3,7 @@ package utils
 import (
 	"strconv"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 func StringToInt(val string) int {

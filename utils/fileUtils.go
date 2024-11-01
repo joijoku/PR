@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 func CreateFile(path string, fileName string, body string) error {

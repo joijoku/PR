@@ -1,4 +1,4 @@
-module pr.net
+module github.com/joijoku/PR
 
 go 1.21.1
 

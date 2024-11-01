@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 func ListOrMapToJsonString(mp interface{}) (string, error) {

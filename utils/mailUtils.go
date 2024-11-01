@@ -14,7 +14,7 @@ import (
 
 	xmail "github.com/go-mail/mail"
 	"github.com/google/uuid"
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 var (

@@ -8,7 +8,7 @@ import (
 	"path"
 	"strings"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 func DownloadFileFromURL(fPath string, url string) (bool, string, error) {

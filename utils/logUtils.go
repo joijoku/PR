@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"pr.net/shared"
+	"github.com/joijoku/PR/shared"
 )
 
 func ShowDebug(show interface{}) {
