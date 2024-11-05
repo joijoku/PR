@@ -9,6 +9,7 @@ import (
 	"reflect"
 
 	"github.com/joijoku/PR/shared"
+	_ "github.com/microsoft/go-mssqldb"
 )
 
 type NullString sql.NullString
@@ -127,7 +128,7 @@ func CreateConnection(dbModel DbConnInfo) (*sql.DB, error) {
 			dbModel.DbLocation,
 			dbModel.DbPort,
 			dbModel.DbSvc)
-	case "mssql_server":
+	case "sqlserver":
 		dbinfo = fmt.Sprintf("server=%s;port=%d;database=%s;user id=%s;password=%s;trustservercertificate=true;encrypt=DISABLE", dbModel.DbLocation,
 			dbModel.DbPort,
 			dbModel.DbName,
