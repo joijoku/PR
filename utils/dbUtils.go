@@ -9,7 +9,6 @@ import (
 	"reflect"
 
 	"github.com/joijoku/PR/shared"
-	_ "github.com/microsoft/go-mssqldb"
 )
 
 type NullString sql.NullString
