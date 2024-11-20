@@ -380,7 +380,7 @@ func SelectWithTx(tx *sql.Tx, query string, limit map[string]any) ([]any, error)
 	return resList, err
 }
 
-func SelectWithTxNew(tx *sql.Tx, query string, limit map[string]any) ([]any, error) {
+func SelectWithNewTx(tx *sql.Tx, query string, limit map[string]any) ([]any, error) {
 	resList := make([]any, 0)
 	var err error
 	var resInterface []interface{}
