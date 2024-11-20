@@ -308,7 +308,7 @@ func Select(db *sql.DB, query string, keepCn bool, limit map[string]any) ([]any,
 	return resList, err
 }
 
-func SelectWithTx(tx *sql.tx, query string, limit map[string]any) ([]any, error) {
+func SelectWithTx(tx *sql.Tx, query string, limit map[string]any) ([]any, error) {
 	resList := make([]any, 0)
 	var err error
 	var resInterface []interface{}
