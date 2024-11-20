@@ -380,6 +380,78 @@ func SelectWithTx(tx *sql.Tx, query string, limit map[string]any) ([]any, error)
 	return resList, err
 }
 
+func SelectWithTxNew(tx *sql.Tx, query string, limit map[string]any) ([]any, error) {
+	resList := make([]any, 0)
+	var err error
+	var resInterface []interface{}
+
+	shared.Block{
+		Try: func() {
+			// err := db.Ping()
+			// shared.CheckErr(err)
+			// resList = make([]any, 0)
+
+			if len(limit) > 0 {
+				mapValidation = map[string]string{
+					"offset": "required|num",
+					"limit":  "required|num",
+					"dbType": "required",
+				}
+
+				v := SetValidation(limit, mapValidation)
+				if v.Validate() {
+					switch dbType := limit["dbType"].(string); dbType {
+					case "mysql":
+						query += fmt.Sprintf("limit %d, %d", limit["offset"].(int), limit["limit"].(int))
+					case "postgres":
+						query += fmt.Sprintf("limit %d offset %d", limit["limit"].(int), limit["offset"].(int))
+					case "sqlserver":
+						query += fmt.Sprintf("offset %d rows fetch next %d rows only", limit["offset"].(int), limit["limit"].(int))
+					case "oracle":
+						query += fmt.Sprintf("offset %d rows fetch next %d rows only", limit["offset"].(int), limit["limit"].(int))
+					}
+				}
+			}
+
+			ShowDebug("Run Select Query : " + query)
+			rows, err := tx.Query(query)
+			shared.CheckErr(err)
+			colNames, err := rows.Columns()
+			shared.CheckErr(err)
+
+			colLen := len(colNames)
+			resInterface = make([]interface{}, colLen)
+
+			for rows.Next() {
+				mapRes := make(map[string]any)
+
+				for i := 0; i < colLen; i++ {
+					resInterface[i] = new(sql.NullString)
+				}
+
+				err := rows.Scan(resInterface...)
+				shared.CheckErr(err)
+				for i, col := range colNames {
+					mapRes[col] = ReadIntefaceVal(resInterface[i])
+				}
+
+				resList = append(resList, mapRes)
+
+			}
+
+			rows.Close()
+
+			err = nil
+		},
+		Catch: func(e shared.Exception) {
+			// panic(e.(error))
+			err = e.(error)
+		},
+	}.Do()
+
+	return resList, err
+}
+
 func SelectWithParam(db *sql.DB, query string, params []interface{}, keepCn bool, limit map[string]any) ([]any, error) {
 	resList := make([]any, 0)
 	var err error
